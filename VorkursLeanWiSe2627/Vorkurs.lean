@@ -117,6 +117,34 @@ example (n m : ℕ) (h1 : m = n) : m + 3 = n + 3 := by
   --  Wir benutzen `rw`, um eine Aussage mit einer Gleichheit umzuschreiben.
   rw [h1]
 
+-- Hier sind drei Übungen mit `rw`:
+
+-- Übung 1
+example (n m : ℕ) (h : m = n) : 2 * m + 1 = 2 * n + 1 := by
+  sorry
+
+-- Übung 2
+example (n m : ℕ) (h : n = m) :2 * m + 1 = 2 * n + 1 := by
+  sorry
+
+-- Übung 3 (hier brauchen wir `rw` zweimal)
+example (n m k : ℕ) (h1 : m = n) (h2 : k = n) : m + k + 1 = n + n + 1 := by
+  sorry
+
+
+-- Lösung 1
+example (n m : ℕ) (h : m = n) : 2 * m + 1 = 2 * n + 1 := by
+  rw [h]
+
+-- Lösung 2
+example (n m : ℕ) (h : n = m) : 2 * m + 1 = 2 * n + 1 := by
+  rw [h]
+
+-- Lösung 3
+example (n m k : ℕ) (h1 : m = n) (h2 : k = n) : m + k + 1 = n + n + 1 := by
+  rw [h1]
+  rw [h2]
+
 end natural_numbers
 
 section induction
@@ -178,27 +206,28 @@ theorem ex3 (n : Nat) : 1 * n = n := by
     sorry
   }
 
+
 -- Lösung 2
--- theorem ex2sol (n : Nat) : 0 * n = 0 := by
---   induction n with
---   | zero => {
---     rfl
---   }
---   | succ n ih => {
---     rw [Nat.mul_succ]
---     rw [ih]
---   }
+theorem ex2sol (n : Nat) : 0 * n = 0 := by
+  induction n with
+  | zero => {
+    rfl
+  }
+  | succ n ih => {
+    rw [Nat.mul_succ]
+    rw [ih]
+  }
 
 -- Lösung 3
--- theorem ex3sol (n : Nat) : 1 * n = n := by
---   induction n with
---   | zero => {
---     rfl
---   }
---   | succ n ih => {
---     rw [Nat.mul_succ]
---     rw [ih]
---   }
+theorem ex3sol (n : Nat) : 1 * n = n := by
+  induction n with
+  | zero => {
+    rfl
+  }
+  | succ n ih => {
+    rw [Nat.mul_succ]
+    rw [ih]
+  }
 
 end induction
 
@@ -249,6 +278,7 @@ example (hPQ : P → Q) (hQR : Q → R) (hP : P) : R := by
 -- Übung 3
 example (hPQ : P → Q) (hQR : Q → R) : P → R := by
   sorry
+
 
 -- Lösung 1
 example (hP : P) : Q → P := by
